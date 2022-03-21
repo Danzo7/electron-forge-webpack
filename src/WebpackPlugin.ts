@@ -317,7 +317,7 @@ the generated files). Instead, it is ${JSON.stringify(pj.main)}`);
       const compiler = webpack(config);
       const webpackDevServer = new WebpackDevServer(this.devServerOptions(), compiler);
       await webpackDevServer.start();
-      this.servers.push(webpackDevServer.server);
+     if(webpackDevServer.server!=undefined) this.servers.push(webpackDevServer.server);
     });
 
     await asyncOra('Compiling Preload Scripts', async () => {
