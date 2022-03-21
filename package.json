@@ -70,9 +70,7 @@
     "webpack": "^5.52.1",
     "webpack-cli": "^4.8.0",
     "which": "^2.0.2",
-    "xvfb-maybe": "^0.2.1"
-  },
-  "dependencies": {
+    "xvfb-maybe": "^0.2.1",
     "@electron-forge/async-ora": "6.0.0-beta.63",
     "@electron-forge/core": "6.0.0-beta.63",
     "@electron-forge/plugin-base": "6.0.0-beta.63",
@@ -83,8 +81,10 @@
     "fs-extra": "^10.0.0",
     "global": "^4.3.2",
     "html-webpack-plugin": "^5.3.1",
-    "webpack": "^5.69.1",
     "webpack-dev-server": "^4.0.0",
     "webpack-merge": "^5.7.3"
+  },
+  "dependencies": {
+
   }
 }
