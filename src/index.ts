@@ -1,3 +1,2 @@
-import { Num } from './Num'
-
-export { Num }
+import d from './WebpackConfig'
+export default d
