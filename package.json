@@ -3,6 +3,7 @@
   "version": "6.0.1-beta.63",
   "description": "Webpack plugin for Electron Forge, lets you use Webpack directly in your tooling",
   "repository": "https://github.com/Danzo7/electron-forge-webpack",
+  "license": "MIT",
   "contributors": [
     {
       "name": "Samuel Attard"
