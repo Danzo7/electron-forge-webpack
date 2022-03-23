@@ -15,16 +15,6 @@
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/types/index.d.js",
-  "scripts": {
-    "prepare": "npm run build",
-    "prepublishOnly": "pinst --disable",
-    "postpublish": "pinst --enable",
-    "build": "npm run build:cjs && npm run build:esm &&  npm run build:types",
-    "build:cjs": "node tools/cleanup cjs && tsc -p config/tsconfig.cjs.json",
-    "build:esm": "node tools/cleanup esm && tsc -p config/tsconfig.esm.json",
-    "build:types": "node tools/cleanup types && tsc -p config/tsconfig.types.json",
-    "package": "npm run build && npm pack"
-  },
   "keywords": [
     "Electron-webpack"
   ],
@@ -44,27 +34,12 @@
     "webpack-merge": "^5.7.3"
   },
   "devDependencies": {
-    "@commitlint/cli": "^13.1.0",
-    "@commitlint/config-conventional": "^13.1.0",
     "@malept/cross-spawn-promise": "^2.0.0",
-    "@types/debug": "^4.1.7",
-    "@types/express-ws": "^3.0.1",
-    "@types/fs-extra": "^9.0.13",
-    "@types/jest": "^27.0.1",
     "@types/node": "^17.0.8",
-    "@typescript-eslint/eslint-plugin": "^4.31.1",
-    "@typescript-eslint/parser": "^4.31.1",
     "chai": "^4.3.3",
     "electron-packager": "^15.4.0",
-    "eslint": "^7.32.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "jest": "^27.2.0",
     "mocha": "^9.0.1",
-    "prettier": "^2.4.0",
-    "ts-jest": "^27.0.5",
-    "ts-loader": "^9.2.5",
-    "typescript": "^4.4.3",
+    "sinon": "^13.0.1",
     "which": "^2.0.2",
     "xvfb-maybe": "^0.2.1"
   }
