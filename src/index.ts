@@ -1,2 +1,2 @@
-import d from './WebpackConfig'
-export default d
+import WebpackConfigGenerator from './WebpackPlugin'
+export default WebpackConfigGenerator
