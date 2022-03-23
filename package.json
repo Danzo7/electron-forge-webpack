@@ -16,7 +16,7 @@
   "module": "dist/esm/index.js",
   "types": "dist/types/index.d.js",
   "scripts": {
-    "prepare": "npm run build",
+    "postinstall": "npm run build",
     "prepublishOnly": "pinst --disable",
     "postpublish": "pinst --enable",
     "build": "npm run build:cjs && npm run build:esm &&  npm run build:types",
