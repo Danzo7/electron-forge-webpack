@@ -9,6 +9,7 @@ export interface WebpackPluginEntryPoint {
    */
   html?: string
 
+  isMain?: boolean
   /**
    * Relative or absolute path to the main JS file for this entry point
    */
@@ -57,7 +58,9 @@ export interface WebpackPluginRendererConfig {
   /**
    * The webpack config for your renderer process
    */
+
   config: WebpackConfiguration | string
+
   /**
    * Instructs webpack to emit a JSON file containing statistics about modules, the dependency
    * graph, and various other build information for the renderer process during the app
