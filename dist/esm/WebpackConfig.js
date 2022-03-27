@@ -145,11 +145,11 @@ export default class WebpackConfigGenerator {
         }
         const defines = this.getDefines(false);
         const plugins = entryPoints
-            .filter((entryPoint) => Boolean(entryPoint.html))
+            .filter((entryPoint) => Boolean(!entryPoint.isMain && entryPoint.html))
             .map((entryPoint) => new HtmlWebpackPlugin({
             title: entryPoint.name,
             template: entryPoint.html,
-            filename: `${!entryPoint.isMain ? entryPoint.name : ''}/index.html`,
+            filename: `${entryPoint.name}/index.html`,
             chunks: [entryPoint.name].concat(entryPoint.additionalChunks || []),
         }))
             .concat([
@@ -163,7 +163,7 @@ export default class WebpackConfigGenerator {
             mode: this.mode,
             output: {
                 path: path.resolve(this.webpackDir, 'renderer'),
-                filename: '[name]/index.js',
+                filename: 'index.js',
                 globalObject: 'self',
                 ...(this.isProd ? {} : { publicPath: '/' }),
             },
