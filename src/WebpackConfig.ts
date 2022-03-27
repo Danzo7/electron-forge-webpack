@@ -75,10 +75,10 @@ export default class WebpackConfigGenerator {
     if (this.isProd) {
       return `\`file://$\{require('path').resolve(__dirname, '..', '${
         inRendererDir ? 'renderer' : '.'
-      }', '${entryPoint.isMain ? entryPoint.name : ''}', '${basename}')}\``
+      }', '${!entryPoint.isMain ? entryPoint.name : ''}', '${basename}')}\``
     }
     const baseUrl = `http://localhost:${this.port}/${
-      entryPoint.isMain ? entryPoint.name : ''
+      !entryPoint.isMain ? entryPoint.name : ''
     }`
     if (basename !== 'index.html') {
       return `'${baseUrl}/${basename}'`
@@ -98,14 +98,14 @@ export default class WebpackConfigGenerator {
     if (entryPoint.preload) {
       if (this.isProd) {
         return `require('path').resolve(__dirname, '../renderer', '${
-          entryPoint.isMain ? entryPoint.name : ''
+          !entryPoint.isMain ? entryPoint.name : ''
         }', 'preload.js')`
       }
       return `'${path
         .resolve(
           this.webpackDir,
           'renderer',
-          entryPoint.isMain ? entryPoint.name : '',
+          !entryPoint.isMain ? entryPoint.name : '',
           'preload.js'
         )
         .replace(/\\/g, '\\\\')}'`
@@ -236,7 +236,7 @@ export default class WebpackConfigGenerator {
           new HtmlWebpackPlugin({
             title: entryPoint.name,
             template: entryPoint.html,
-            filename: `${entryPoint.isMain ? entryPoint.name : ''}/index.html`,
+            filename: `${!entryPoint.isMain ? entryPoint.name : ''}/index.html`,
             chunks: [entryPoint.name].concat(entryPoint.additionalChunks || []),
           }) as WebpackPluginInstance
       )
