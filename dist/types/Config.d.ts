@@ -7,7 +7,6 @@ export interface WebpackPluginEntryPoint {
      * like WebWorker scripts.
      */
     html?: string;
-    isMain?: boolean;
     /**
      * Relative or absolute path to the main JS file for this entry point
      */

@@ -24,7 +24,7 @@ class WebpackConfigGenerator {
     }
     resolveConfig(config) {
         if (typeof config === 'string') {
-            // eslint-disable-next-line @typescript-eslint/no-var-requires
+            // eslint-disable-next-line @typescript-eslint/no-var-requires, import/no-dynamic-require, global-require
             return require(path_1.default.resolve(this.projectDir, config));
         }
         return config;
@@ -42,9 +42,9 @@ class WebpackConfigGenerator {
     }
     rendererEntryPoint(entryPoint, inRendererDir, basename) {
         if (this.isProd) {
-            return `\`file://$\{require('path').resolve(__dirname, '..', '${inRendererDir ? 'renderer' : '.'}', '${entryPoint.isMain ? entryPoint.name : ''}', '${basename}')}\``;
+            return `\`file://$\{require('path').resolve(__dirname, '..', '${inRendererDir ? 'renderer' : '.'}', '${entryPoint.name}', '${basename}')}\``;
         }
-        const baseUrl = `http://localhost:${this.port}/${entryPoint.isMain ? entryPoint.name : ''}`;
+        const baseUrl = `http://localhost:${this.port}/${entryPoint.name}`;
         if (basename !== 'index.html') {
             return `'${baseUrl}/${basename}'`;
         }
@@ -57,10 +57,10 @@ class WebpackConfigGenerator {
     getPreloadDefine(entryPoint) {
         if (entryPoint.preload) {
             if (this.isProd) {
-                return `require('path').resolve(__dirname, '../renderer', '${entryPoint.isMain ? entryPoint.name : ''}', 'preload.js')`;
+                return `require('path').resolve(__dirname, '../renderer', '${entryPoint.name}', 'preload.js')`;
             }
             return `'${path_1.default
-                .resolve(this.webpackDir, 'renderer', entryPoint.isMain ? entryPoint.name : '', 'preload.js')
+                .resolve(this.webpackDir, 'renderer', entryPoint.name, 'preload.js')
                 .replace(/\\/g, '\\\\')}'`;
         }
         // If this entry-point has no configured preload script just map this constant to `undefined`
@@ -152,7 +152,7 @@ class WebpackConfigGenerator {
             .map((entryPoint) => new html_webpack_plugin_1.default({
             title: entryPoint.name,
             template: entryPoint.html,
-            filename: `${entryPoint.isMain ? entryPoint.name : ''}/index.html`,
+            filename: `${entryPoint.name}/index.html`,
             chunks: [entryPoint.name].concat(entryPoint.additionalChunks || []),
         }))
             .concat([
