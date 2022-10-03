@@ -1,3 +1,6 @@
+>Archived in favor of [electron-webpack-forge](https://github.com/Danzo7/electron-webpack-forge)
+
+
 # Electron forge webpack plugin
 >forked from [@electron-forge/plugin-webpack](https://github.com/electron-userland/electron-forge/tree/master/packages/plugin/webpack)
 
